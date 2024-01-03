@@ -24,6 +24,7 @@ class LoginController extends BaseAuthController
         $code = self::generateCode();
 
         // TODO відпарвка смс
+        // TODO зробити перевірку на запис в редісі, якщо запис вже є, то редіректити на сторінку веріфикації
 
         self::redisCode($user['phone'], $code);
 

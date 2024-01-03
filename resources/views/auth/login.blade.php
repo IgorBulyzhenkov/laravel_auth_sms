@@ -9,7 +9,7 @@
         <section class="page-form">
             <div class="page-form__container">
                 <div class="page-form__wrapper">
-                    <form action=" {{ route('login.create') }} " method="POST" class="page-form__info form">
+                    <form action="{{ route('login.create') }}" method="POST" class="page-form__info form">
                         @csrf
                         <h3 class="form__title">Вхід</h3>
                         <div class="form__wrap">

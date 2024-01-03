@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <button type="submit" class="form__button btn">Зареєструватися</button>
-                        <a href="{{ route('login_page') }}" class="form__link">Вхід</a>
+                        <a href="{{ route('login') }}" class="form__link">Вхід</a>
                     </form>
                 </div>
             </div>

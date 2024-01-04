@@ -17,7 +17,9 @@ class LoginController extends BaseAuthController
             ->first();
 
         if (is_null($user)) {
-            return redirect()->route('reg_page')->with('error', 'Такого користувача не існує!');
+            return redirect()
+                ->route('reg_page')
+                ->with('error', 'Такого користувача не існує!');
         }
 
         $storeCode = Redis::get('sms:' . $user['phone']);
@@ -28,13 +30,7 @@ class LoginController extends BaseAuthController
                 ->with('error', 'Вам вже було відправленно смс з кодом, наступне можна відправити через 5 хвилин!');
         }
 
-        self::putSession($user['phone'], $user['name']);
-
-        $code = self::generateCode();
-
-        // TODO відпарвка смс
-
-        self::redisCode($user['phone'], $code);
+        self::sendSmsCode($user['phone'], $user['name']);
 
         return redirect()
             ->route('verify_page')

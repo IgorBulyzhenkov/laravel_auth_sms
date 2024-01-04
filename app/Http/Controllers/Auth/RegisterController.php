@@ -26,13 +26,7 @@ class RegisterController extends BaseAuthController
                 ->with('error', 'Такий користувач вже існує!');
         }
 
-        self::putSession($data['phone'], $data['name']);
-
-        $code = self::generateCode();
-
-        // TODO відпарвка смс
-
-        self::redisCode($data['phone'], $code);
+        self::sendSmsCode($data['phone'], $data['name']);
 
         return redirect()->route('verify_page');
     }

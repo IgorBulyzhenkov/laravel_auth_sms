@@ -14,12 +14,12 @@
                         <h3 class="form__title">Зареєструватися</h3>
                         <div class="form__wrap">
                             <div class="form__item">
-                                <label>
+                                <label class="w-100">
                                     <input data-error="Заповніть" data-required data-validate name="name" type="text" placeholder="Ім'я" class="form__input">
                                 </label>
                             </div>
                             <div class="form__item">
-                                <label>
+                                <label class="w-100">
                                     <input data-error="Введіть номер телефону" data-required="phone" data-validate name="phone" type="tel" placeholder="Введіть номер телефону" class="form__input phone-mask">
                                 </label>
                             </div>

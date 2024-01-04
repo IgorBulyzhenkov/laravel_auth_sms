@@ -22,7 +22,7 @@ class VerifyController extends BaseAuthController
             $user = User::query()->where('phone', $phone)->first();
 
             if( is_null($user) ){
-                User::query()
+                $user = User::query()
                     ->create([
                         'name'  => $name,
                         'phone' => $phone

@@ -21,7 +21,6 @@ class TurboSmsService
 
     public function sendSms($phone, $message): \Illuminate\Http\JsonResponse|string
     {
-
         try {
 
             $response = $this->client->post($this->url, [

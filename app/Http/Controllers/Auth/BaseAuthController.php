@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redis;
 
 class BaseAuthController extends Controller
 {
-    private $turboSms;
+    private TurboSmsService $turboSms;
 
     public function __construct(TurboSmsService $turboSmsService)
     {

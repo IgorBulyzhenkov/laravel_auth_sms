@@ -12,7 +12,7 @@ class logoutController extends Controller
     {
         if (auth()->user()) {
             Auth::logout();
-            return redirect()->route('login_page');
+            return redirect()->route('login');
         }
         return redirect()->route('home');
     }

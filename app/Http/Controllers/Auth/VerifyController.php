@@ -31,7 +31,9 @@ class VerifyController extends BaseAuthController
 
             Auth::login($user);
 
-            return redirect()->route('home');
+            Redis::del('sms:'.auth()->user()->phone);
+
+            return redirect()->route('home')->with('success', 'Вітаю '.auth()->user()->name.'!');
         }
 
         return redirect()->route('verify_page')->with('error', 'Невірний код!');

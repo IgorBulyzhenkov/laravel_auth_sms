@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    {{-- TODO  зробити вивід помилок на всіх сторінках --}}
     <main id="success-page">
         <section class="page-form">
             <div class="page-form__container">

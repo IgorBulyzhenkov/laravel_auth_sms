@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends BaseAuthController
 {
@@ -19,15 +20,24 @@ class LoginController extends BaseAuthController
             return redirect()->route('reg_page')->with('error', 'Такого користувача не існує!');
         }
 
+        $storeCode = Redis::get('sms:' . $user['phone']);
+
+        if(!empty($storeCode)){
+            return redirect()
+                ->route('verify_page')
+                ->with('error', 'Вам вже було відправленно смс з кодом, наступне можна відправити через 5 хвилин!');
+        }
+
         self::putSession($user['phone'], $user['name']);
 
         $code = self::generateCode();
 
         // TODO відпарвка смс
-        // TODO зробити перевірку на запис в редісі, якщо запис вже є, то редіректити на сторінку веріфикації
 
         self::redisCode($user['phone'], $code);
 
-        return redirect()->route('verify_page');
+        return redirect()
+            ->route('verify_page')
+            ->with('success', 'Вам відправленно смс з кодом, наступне можна відправити через 5 хвилин!');
     }
 }
